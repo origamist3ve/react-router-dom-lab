@@ -2,7 +2,7 @@ import {Link} from "react-router";
 
 
 const MailboxesList = (props) => (
-    <>
+    <div className="mail-box">
         <h1> MailBox list</h1>
         <ul className="mail-box">
             {props.mailboxes.map(mailbox => (
@@ -11,7 +11,7 @@ const MailboxesList = (props) => (
                 </li>
             ))}
         </ul>
-    </>
+    </div>
 )
 
 export default MailboxesList

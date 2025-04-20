@@ -7,12 +7,18 @@ const MailboxDetails = (props) => {
     const navigate = useNavigate();
     const {mailboxId} = useParams();
     const [mailboxes, setMailboxes] = useState({});
+    const [letters, setLetters] = useState({});
 
     useEffect(() => {
         const selectedBox = props.mailboxes.filter((mailbox) => {
             return mailbox._id === Number(mailboxId);
         })
         setMailboxes(selectedBox[0]);
+
+        const selectedLetters = props.letters.filter((letter) => (
+            letter.mailboxId === Number(mailboxId)
+        ));
+        setLetters(selectedLetters[0]);
     }, [])
 
     return (
@@ -29,6 +35,17 @@ const MailboxDetails = (props) => {
             </dl>
                 ): (
                     <h2> Mailbox Not Found!</h2>
+            )}
+            {letters ? (
+                <dl>
+                    <h1>Letters</h1>
+                    <dt>dear {letters.recipient}</dt>
+                    <br/>
+                    <dt>{letters.message}</dt>
+                    <dd></dd>
+                </dl>
+            ):(
+                <p>No letters</p>
             )}
 
         </>
